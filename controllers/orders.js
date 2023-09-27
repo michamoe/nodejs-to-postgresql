@@ -26,7 +26,7 @@ export const addNewOrder = async (req, res) => {
   try {
     const result = await ordersPool.query(
       'INSERT INTO orders (price, date, user_id) VALUES ($1, $2, $3) RETURNING *',
-      [name, author, image_url]
+      [price, date, user_id]
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
@@ -34,7 +34,7 @@ export const addNewOrder = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
+export const updateOrder = async (req, res) => {
   const { id } = req.params;
   const { price, date, user_id } = req.body;
 
@@ -50,7 +50,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteOrder = async (req, res) => {
   const { id } = req.params;
 
   try {
